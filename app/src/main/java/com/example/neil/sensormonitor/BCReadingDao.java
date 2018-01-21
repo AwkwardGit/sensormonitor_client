@@ -7,10 +7,6 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-/**
- * Created by Neil on 07/01/2018.
- */
-
 @Dao
 public interface BCReadingDao {
     @Query("SELECT * FROM BCReading")
@@ -29,7 +25,7 @@ public interface BCReadingDao {
     List<BCReading> getByIdAndTimestamp(int id,int timestamp);
 
     @Query("UPDATE BCReading SET serverId=:serverId WHERE id=:id AND timestamp=:timestamp")
-    void setServerIdByIdAndTimestamp(int serverId,int id,int timestamp);
+    void setServerIdByIdAndTimestamp(int serverId,int id,long timestamp);
 
     @Insert
     long insert(BCReading r);
