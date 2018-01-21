@@ -11,7 +11,6 @@ public class App extends Application {
     public static App INSTANCE;
 
     AppDatabase db;
-    SharedPreferences prefs;
 
     public static App get() {
         return INSTANCE;
