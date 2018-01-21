@@ -19,12 +19,12 @@ public class BCReading {
     public long serverId;
 
     public long timestamp;
-    private double Bx;
-    private double By;
-    private double Bz;
-    private double Cx;
-    private double Cy;
-    private double Cz;
+    double Bx;
+    double By;
+    double Bz;
+    double Cx;
+    double Cy;
+    double Cz;
 
     private BCReading() {}
 
