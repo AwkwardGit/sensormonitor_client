@@ -53,4 +53,12 @@ public class App extends Application {
     public boolean isActive() {
         return getPrefs().getBoolean("isActive",true);
     }
+
+    public long getLastBCTimestamp() {return getPrefs().getLong("lastBCTimestamp", 0); }
+
+    public void setLastBCTimestamp(Long timestamp) {
+        SharedPreferences.Editor editor = getPrefs().edit();
+        editor.putLong("lastBCTimestamp", timestamp);
+        editor.apply();
+    }
 }
