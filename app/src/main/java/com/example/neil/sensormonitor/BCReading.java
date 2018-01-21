@@ -29,7 +29,7 @@ public class BCReading {
     private BCReading() {}
 
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
-    private BCReading(SensorEvent event) {
+    BCReading(SensorEvent event) {
         serverId = 0;
         timestamp = System.currentTimeMillis() +
                 ((event.timestamp - SystemClock.elapsedRealtimeNanos())/1000000L);
@@ -41,7 +41,7 @@ public class BCReading {
         Cz = event.values[5];
     }
 
-    private JSONObject toJSON(int siteId) {
+    JSONObject toJSON(int siteId) {
         JSONObject o = new JSONObject();
         try {
             o.put("site_id",siteId);
