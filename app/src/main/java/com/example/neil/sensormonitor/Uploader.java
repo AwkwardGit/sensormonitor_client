@@ -14,10 +14,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Uploader {
-    public static final String TAG = "sensormonitor";
+class Uploader {
+    private static final String TAG = "sensormonitor";
 
-    public static void upload() {
+    static void upload() {
         URL location;
         HttpURLConnection conn;
 
@@ -59,12 +59,11 @@ public class Uploader {
 
                 BufferedReader in=new BufferedReader(
                         new InputStreamReader(conn.getInputStream()));
-                StringBuffer sb = new StringBuffer("");
-                String line="";
+                StringBuilder sb = new StringBuilder();
+                String line;
 
                 while((line = in.readLine()) != null) {
                     sb.append(line);
-                    break;
                 }
 
                 in.close();
@@ -80,7 +79,7 @@ public class Uploader {
         }
     }
 
-    public static void handleResponse(String response) {
+    private static void handleResponse(String response) {
         App app = App.get();
         AppDatabase db = app.getDb();
 
@@ -92,7 +91,7 @@ public class Uploader {
                 if (b.length() == 4) {
                     int siteId = b.getInt(0);
                     int id = b.getInt(1);
-                    int timestamp = b.getInt(2);
+                    long timestamp = b.getLong(2);
                     int serverId = b.getInt(3);
                     if (siteId == app.getSiteId()) {
                         db.bcReadingDao().setServerIdByIdAndTimestamp(serverId,id, timestamp);
@@ -100,7 +99,7 @@ public class Uploader {
                 }
             }
         } catch (JSONException e) {
-            return;
+            Log.e("sensormonitor","Invalid JSON in server response");
         }
     }
 }
