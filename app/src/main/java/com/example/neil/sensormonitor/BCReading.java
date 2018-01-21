@@ -5,14 +5,12 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.hardware.SensorEvent;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-/**
- * Created by Neil on 07/01/2018.
- */
 
 @Entity
 public class BCReading {
@@ -21,19 +19,20 @@ public class BCReading {
     public long serverId;
 
     public long timestamp;
-    public double Bx;
-    public double By;
-    public double Bz;
-    public double Cx;
-    public double Cy;
-    public double Cz;
+    private double Bx;
+    private double By;
+    private double Bz;
+    private double Cx;
+    private double Cy;
+    private double Cz;
 
-    public BCReading() {}
+    private BCReading() {}
 
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
-    public BCReading(SensorEvent event) {
+    private BCReading(SensorEvent event) {
         serverId = 0;
-        timestamp = event.timestamp;
+        timestamp = System.currentTimeMillis() +
+                ((event.timestamp - SystemClock.elapsedRealtimeNanos())/1000000L);
         Bx = event.values[0];
         By = event.values[1];
         Bz = event.values[2];
@@ -42,7 +41,7 @@ public class BCReading {
         Cz = event.values[5];
     }
 
-    public JSONObject toJSON(int siteId) {
+    private JSONObject toJSON(int siteId) {
         JSONObject o = new JSONObject();
         try {
             o.put("site_id",siteId);
@@ -56,7 +55,7 @@ public class BCReading {
             o.put("Cy",Cy);
             o.put("Cz",Cz);
         } catch(JSONException e) {
-            ;
+           Log.e("sensormonitor","Error converting reading to JSON") ;
         }
         return o;
     }
