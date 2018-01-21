@@ -11,9 +11,10 @@ import android.util.Log;
 import android.widget.TextView;
 
 public class Listener implements SensorEventListener {
+    private static long readingInterval = 10000; // milliseconds
     private MainActivity m;
 
-    public Listener(MainActivity m0) {
+    Listener(MainActivity m0) {
         m = m0;
     }
 
@@ -21,10 +22,14 @@ public class Listener implements SensorEventListener {
     }
 
     public void onSensorChanged(final SensorEvent event) {
-        if (App.get().isActive()) {
+        App app = App.get();
+        if (app.isActive()) {
             BCReading x = new BCReading(event);
             m.showBCReading(x);
-            new InsertBCReadingTask().execute(x);
+            if (x.timestamp - app.getLastBCTimestamp() >= readingInterval) {
+                new InsertBCReadingTask().execute(x);
+                app.setLastBCTimestamp(x.timestamp);
+            }
         }
     }
 
@@ -46,7 +51,6 @@ public class Listener implements SensorEventListener {
                 numRecords = (long) db.bcReadingDao().getCount();
             }
 
-            Log.i("sensormonitor","T0");
             Uploader.upload();
             return numRecords;
         }
