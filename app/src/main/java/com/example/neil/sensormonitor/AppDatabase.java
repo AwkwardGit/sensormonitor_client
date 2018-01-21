@@ -11,7 +11,7 @@ import java.util.StringJoiner;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract BCReadingDao bcReadingDao();
 
-    private String BCSyncData(int siteId) {
+    String BCSyncData(int siteId) {
         List<BCReading> xs = bcReadingDao().getUnsaved();
         StringJoiner sj = new StringJoiner(",");
         for(BCReading x : xs) {
