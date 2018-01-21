@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">SensorMonitor</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string-array name="pref_sites">
+        <item>Kings Landing</item>
+        <item>Highgarden</item>
+        <item>Moat Caitlin</item>
+        <item>Riverrun</item>
+        <item>Sunspear</item>
+        <item>Winterfell</item>
+        <item>Castle Black</item>
+        <item>Braavos</item>
+        <item>Volantis</item>
+        <item>Casterley Rock</item>
+    </string-array>
+    <string-array name="pref_site_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="pref_servers">
+        <item>dev</item>
+        <item>bim</item>
+        <item>cpanel</item>
+    </string-array>
+    <string-array name="pref_server_values">
+        <item>http://10.0.2.2/sensormonitor/sync.php</item>
+        <item>http://bim.shef.ac.uk/sensormonitor/sync.php</item>
+        <item>http://neil-strickland.shef.ac.uk/sensormonitor/sync.php</item>
+    </string-array>
+</resources>

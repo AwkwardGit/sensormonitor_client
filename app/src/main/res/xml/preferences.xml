@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_sites"
+        android:entryValues="@array/pref_site_values"
+        android:key="siteId"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="Site" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_servers"
+        android:entryValues="@array/pref_server_values"
+        android:key="uploadUrl"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="Server" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="isActive"
+        android:title= "Enable sensor monitoring" />
+
+</PreferenceScreen>
