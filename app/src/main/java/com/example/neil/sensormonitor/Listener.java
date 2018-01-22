@@ -57,7 +57,11 @@ public class Listener implements SensorEventListener {
 
         protected void onPostExecute(Long i) {
             TextView b = m.bottom_view;
-            b.setText(String.valueOf(i));
+            String s = String.valueOf(i);
+            if (! App.get().isActive()) {
+                s = s + " (paused)";
+            }
+            b.setText(s);
         }
     }
 }

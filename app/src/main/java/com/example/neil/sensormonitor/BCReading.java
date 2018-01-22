@@ -26,7 +26,7 @@ public class BCReading {
     double Cy;
     double Cz;
 
-    private BCReading() {}
+    public BCReading() {}
 
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     BCReading(SensorEvent event) {

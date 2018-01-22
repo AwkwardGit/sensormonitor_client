@@ -39,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         showPrefs();
         getSensors();
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showPrefs();
     }
 
     @Override
@@ -109,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
     private void showPrefs() {
         SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
         siteName_view.setText(p.getString("siteName",""));
+        if (! p.getBoolean("isActive",true)) {
+            bottom_view.setText("(paused)");
+        }
     }
 
     public void deleteAllBCReadings(View view) {
